@@ -1,0 +1,23 @@
+name: exp1_sweep1
+description: |
+  Baseline experiment 1... 
+  Sweep 1...
+command:
+- python
+- ${program}
+- --wandb
+- ${args}
+program: main.py
+metric:
+  goal: minimize
+  name: valid_nll
+method: grid
+parameters:
+  learning_rate:
+    values: [0.0001, 0.001, 0.1]
+  batch_size:
+    values: [16, 32, 64]
+  epochs:
+    values: [5, 10, 15]
+  optimizer:
+    values: ["adam", "sgd"]
