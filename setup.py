@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name="todo",
     version="0.1.0",
-    description="TODO",
+    description="", # TODO
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     package_dir={"": "src"},
     python_requires=">=3.9.0",

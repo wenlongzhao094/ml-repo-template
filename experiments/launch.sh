@@ -1,6 +1,12 @@
 #!/bin/bash
 
-ARG1=arg1
-ARG2=arg2
+BATCH_SIZE=32
+LEARNING_RATE=0.01
+OUTPUT_DIR=outputs/debug
 
-python main.py --arg1 ${ARG1} --arg2 ${ARG2}
+mkdir -p ${OUTPUT_DIR}
+
+python main.py \
+--batch_size ${BATCH_SIZE} \
+--learning_rate ${LEARNING_RATE} \
+> ${OUTPUT_DIR}/log.out

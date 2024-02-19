@@ -1,0 +1,19 @@
+name: exp1_sweep1.1
+description: |
+  Experiment 1: make sure wandb works. 
+  Sweep 1: grid search the learning rate and the batch size.
+command:
+- python
+- ${program}
+- --wandb
+- ${args}
+program: main.py
+metric:
+  goal: minimize
+  name: valid_loss
+method: grid
+parameters:
+  learning_rate:
+    values: [0.0001, 0.001, 0.01]
+  batch_size:
+    values: [16, 32, 64]

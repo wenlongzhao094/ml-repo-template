@@ -3,12 +3,12 @@
 ##################################################
 data/*
 scratch/*
-!scratch/development_log.md
+!scratch/DEV_LOG.md
 
-# experiment outputs
-outputs
+# experiments
 wandb/*
 !wandb/settings
+outputs
 
 # keep otherwise empty directories
 !.gitkeep

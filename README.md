@@ -1,5 +1,11 @@
 # Machine Learning Repo Template
 
+## Use This Template
+1. Change the package name in `src` and `setup.py`.
+2. Follow the Installation section below to set up an environment.
+3. Write code and follow `experiments/README.md` to run experiments.
+4. Before code release, apply the `LICENSE` to all files.
+
 ## Installation
 ```
 conda create -n <env_name> python=3.9
