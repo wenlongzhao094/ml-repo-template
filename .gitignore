@@ -3,7 +3,6 @@
 ##################################################
 data/*
 scratch/*
-!scratch/DEV_LOG.md
 
 # experiments
 wandb/*

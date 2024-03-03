@@ -8,17 +8,17 @@ python slurm_wandb_agent.py --sweep_id SWEEP_ID \
 import argparse, os, json
 
 parser = argparse.ArgumentParser(description="Launch a slurm job to run a wandb agent")
-parser.add_argument("--wandb_account", type=str, default="wandb_account_name") # TODO
-parser.add_argument("--wandb_project", type=str, default="wandb_project_name") # TODO
+parser.add_argument("--wandb_account", type=str, default="wandb_account_name") # TODO: set the default
+parser.add_argument("--wandb_project", type=str, default="wandb_project_name") # TODO: set the default
 parser.add_argument("--sweep_id", type=str, required=True, help="sweep id created by wandb")
 parser.add_argument("--partition", type=str, required=True, help="gpu partition name")
-parser.add_argument(
-    "--exclude", type=str, default=None, help="comma-separated gpu nodes to exclude, e.g. node001,node010"
-)
-parser.add_argument("--n_agents", type=int, default=1, help="number of agents per sweep")
+parser.add_argument("--constraint", type=str, default=None, help="constraint on the assigned GPU")
+parser.add_argument("--exclude", type=str, default=None, help="comma-separated nodes to exclude, e.g. node001,node010")
+parser.add_argument("--n_agents", type=int, default=1, help="number of agents for the sweep")
 parser.add_argument("--n_runs", type=int, default=10, help="number of runs per agent")
 parser.add_argument("--n_gpus", type=int, default=1, help="number of gpus per agent")
 parser.add_argument("--n_cpus", type=int, default=None, help="number of cpus per agent")
+parser.add_argument("--mem", type=str, default="30GB", help="memory to request on the computation node per agent")
 parser.add_argument(
     "--slurm_dir", type=str, default="slurm",
     help="directory to store slurm input and output files in"
@@ -52,9 +52,10 @@ with open(sbatch_file_path, "w") as f:
                 f"#SBATCH --array=1-{args.n_agents}" if args.n_agents > 1 else "",
                 f"#SBATCH --gres=gpu:{args.n_gpus}",
                 f"#SBATCH --partition={args.partition}",
+                f"#SBATCH --constraint={args.constraint}" if args.constraint else "",
                 f"#SBATCH --exclude={args.exclude}" if args.exclude else "",
                 f"#SBATCH --cpus-per-task={args.n_cpus}" if args.n_cpus else "",
-                "#SBATCH --mem=40G",
+                f"#SBATCH --mem={args.mem}",
                 f"#SBATCH --output={sweep_dir}/%A-%a.out"
                 if args.n_agents > 1
                 else f"#SBATCH --output={sweep_dir}/%A.out",
