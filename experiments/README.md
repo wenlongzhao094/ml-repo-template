@@ -50,8 +50,8 @@ More details are in the documentation: https://docs.wandb.ai/quickstart.
     ```
     python slurm_wandb_agent.py \
     --sweep_id SWEEP_ID \
-    --partition gpu-preempt \
-    --constraint 2080ti \
-    --n_agents 2 --n_runs 10 --n_gpus 1 --n_cpus 2 --mem 30GB
+    --partition gpu-preempt --constraint 2080ti \
+    --n_jobs 2 --n_gpus 1 --n_cpus_per_task 2 --time 1-00:00 --mem 30GB --n_runs 10
     ```
-    This requests 2 agents, each uses one 2080ti GPU to sequentially perform 10 runs, and thus 2x10=20 runs for the sweep, i.e. 20 sets of hyperparameters will be tried.
+    This requests 2 slurm jobs, each launching a wandb agent to use a 2080ti GPU to sequentially perform 10 runs.
+    Thus we have 2x10=20 runs for the sweep, i.e., 20 sets of hyperparameters will be tried.
