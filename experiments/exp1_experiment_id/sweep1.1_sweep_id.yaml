@@ -13,9 +13,9 @@ metric:
   name: valid_loss
 method: grid
 parameters:
-  exp_idx:
+  exp_id:
     value: exp1
-  sweep_idx:
+  sweep_id:
     value: sweep1.1
   seed:
     value: [2024, 2025, 2026]

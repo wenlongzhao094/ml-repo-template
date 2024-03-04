@@ -29,7 +29,7 @@
 ### Setup
 1. Create a wandb account. 
 2. Run `wandb login` on the command line; config `wandb/settings`.
-3. Add the wandb account and project name as default arguments in `slurm_wandb_agent.py`.
+3. Add the wandb account and project name as default arguments in `slurm_wandb_agent.py` and `main.py`.
 
 More details are in the documentation: https://docs.wandb.ai/quickstart.
 
